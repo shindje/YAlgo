@@ -2,16 +2,19 @@ import java.io.File
 
 fun main() {
     val map = mutableMapOf<String, Int>()
-    File("input.txt").useLines { lines -> lines.forEach {
-        if (!it.isEmpty()) {
-            val sss = it.split(" ")
+    val sb = StringBuilder()
+    File("input.txt").forEachLine {
+        val its = it.trim()
+        if (!its.isEmpty()) {
+            val sss = its.split(Regex("\\s+"))
             for (s in sss) {
                 var cnt = map[s]
                 if (cnt == null)
                     cnt = 0
-                print("$cnt ")
+                sb.append("$cnt ")
                 map[s] = ++cnt
             }
         }
-    }}
+    }
+    println(sb.toString())
 }
